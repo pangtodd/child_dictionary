@@ -1,0 +1,15 @@
+<h1>Children's Dictionary (written by children)</h1>
+
+<h3>Words we've defined!</h3>
+
+<% if @words.any? %>
+  <ul>
+    <% @words.each do |word| %>
+      <li><%= word.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no words to display.</p>
+<% end %>
+
+<a href="/words/new">Add a new word</a>
