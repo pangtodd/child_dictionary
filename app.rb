@@ -20,8 +20,7 @@ end
 
 get('/words/:id') do
   @word = Word.find(params[:id].to_i())
-  erb(:album)
-  "This route will show a specific album based on its ID. The value of ID here is #{params[:id]}."
+  erb(:word)
 end
 
 post('/words') do
@@ -33,11 +32,15 @@ post('/words') do
 end
 
 get('/words/:id/edit') do
-  "This will take us to a page with a form for updating an album with an ID of #{params[:id]}."
+  @word = Word.find(params[:id].to_i())
+  erb(:edit_word)
 end
 
 patch('/words/:id') do
-  "This route will update an album. We can't reach it with a URL. In a future lesson, we will use a form that specifies a PATCH action to reach this route."
+  @word = Word.find(params[:id].to_i())
+  @word.update(params[:name])
+  @words = Word.all
+  erb(:words)
 end
 
 delete('/words/:id') do
