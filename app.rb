@@ -15,15 +15,21 @@ get('/words') do
 end
 
 get('/words/new') do
-  "This will take us to a page with a form for adding a new album."
+  erb(:new_word)
 end
 
 get('/words/:id') do
+  @word = Word.find(params[:id].to_i())
+  erb(:album)
   "This route will show a specific album based on its ID. The value of ID here is #{params[:id]}."
 end
 
 post('/words') do
-  "This route will add an album to our list of albums. We can't access this by typing in the URL. In a future lesson, we will use a form that specifies a POST action to reach this route."
+  name = params[:word_name]
+  word = Word.new(name, nil)
+  word.save()
+  @words = Word.all()
+  erb(:words)
 end
 
 get('/words/:id/edit') do
