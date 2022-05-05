@@ -1,6 +1,6 @@
 class Word
   attr_reader :id, :name
-  
+
   @@words = {}
   @@total_rows = 0
 
@@ -19,5 +19,10 @@ class Word
 
   def ==(word_to_compare)
     self.name() == word_to_compare.name()
+  end
+
+  def self.clear
+    @@words = {}
+    @@total_rows = 0
   end
 end
