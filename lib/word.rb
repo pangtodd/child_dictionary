@@ -1,5 +1,6 @@
 class Word
   attr_reader :id, :name
+  
 
   @@words = {}
   @@total_rows = 0
@@ -37,4 +38,9 @@ class Word
   def delete
     @@words.delete(self.id)
   end
+
+  def definitions
+    Definition.find_by_word(self.id)
+  end
+  
 end
