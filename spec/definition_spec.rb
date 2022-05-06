@@ -73,12 +73,24 @@ describe '#Definition' do
     end
   end
   describe('.find_by_word') do
-    it("finds definitions for an word") do
+    it("finds definitions for a word") do
+      word2 = Word.new("frog", nil)
+      word2.save()
       definition = Definition.new("aquatic animal", @word.id, nil)
       definition.save()
-      definition2 = Definition.new("big fish", @word.id, nil)
+      definition2 = Definition.new("amphibious animal", word2.id, nil)
       definition2.save()
-      expect(Definition.find_by_word(definition2.id)).to(eq([definition2]))
+      expect(Definition.find_by_word(word2.id)).to eq([definition2])
     end
   end
+  describe('#definitions') do
+    it("returns a word's definitions") do
+      word = Word.new("Shark", nil)
+      word.save()
+      definition = Definition.new("aquatic animal", word.id, nil)
+      definition.save()
+      definition2 = Definition.new("big fish", word.id, nil)
+      definition.save()
+      expect(word.definitions).to(eq([definition, definition2]))
+    end
 end
