@@ -1,11 +1,12 @@
-<h1>Children's Dictionary (written by children)</h1>
+<h1>Children's Dictionary</h1>
+<p> (as written by children) </p>
 
 <h3>Words we've defined!</h3>
 
 <% if @words.any? %>
   <ul>
     <% @words.each do |word| %>
-      <li><%= word.name %></li>
+      <li><a href="/words/<%= word.id %>"><%= word.name %></a></li>
     <% end %>
   </ul>
 <% else %>
